@@ -42,9 +42,41 @@ export default class Template extends React.Component {
                   textDecoration: "none",
                 }}
               >
-                Gatsby
+                GameGhost
               </Link>
             </h1>
+            <h5 style={{display: "flex", flexFlow: "row wrap", justifyContent: "flex-end"}}>
+              <Link
+                to={prefixLink("/services/")}
+                style={{
+                  color: "white",
+                  marginRight: "10px",
+                  textDecoration: "none",
+                }}
+              >
+                services
+              </Link>
+              <Link
+                to={prefixLink("/contact/")}
+                style={{
+                  color: "white",
+                  marginRight: "10px",
+                  textDecoration: "none",
+                }}
+              >
+                contact
+              </Link>
+              <Link
+                to={prefixLink("/about/")}
+                style={{
+                  color: "white",
+                  marginRight: "10px",
+                  textDecoration: "none",
+                }}
+              >
+                about
+              </Link>
+            </h5>
           </div>
         </div>
         <div
