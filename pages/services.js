@@ -3,7 +3,7 @@ import { Link } from 'react-router'
 import { prefixLink } from 'gatsby-helpers'
 import Helmet from 'react-helmet'
 import { config } from 'config'
-import {Service, ServicesContainer} from '../components/Service'
+import {Item, ItemsContainer} from '../components/Item'
 
 export default class Index extends React.Component {
   render() {
@@ -12,9 +12,9 @@ export default class Index extends React.Component {
         <h1>
           Services
         </h1>
-        <ServicesContainer>
-          <Service 
-            containerStyle={{backgroundColor: "lightgray", padding: "30px"}}
+        <ItemsContainer>
+          <Item 
+            itemStyle={{backgroundColor: "lightgray", padding: "30px"}}
             imgSrc={require('assets/other/finn-jake.jpg')}
             title="Adventure Time!!"
             subtitle="great for beginners of any age!"
@@ -27,9 +27,9 @@ export default class Index extends React.Component {
           >
           Step into the world of Adventure Time to solve puzzles, beat up bad guys, and save the day! 
           Characters, dice, music, maps, and an epic story will all be provided by your host.
-          </Service>
-          <Service 
-            containerStyle={{backgroundColor: "lightgray", padding: "30px"}}
+          </Item>
+          <Item 
+            itemStyle={{backgroundColor: "lightgray", padding: "30px"}}
             imgSrc={require('assets/D_D/d_d.jpg')}
             title="Tabletop Games"
             subtitle="your choice of Roleplaying Game"
@@ -43,9 +43,9 @@ export default class Index extends React.Component {
             ]}
           >
           Pick from our list of roleplaying games. Every one's a winner!
-          </Service>
-          <Service 
-            containerStyle={{backgroundColor: "lightgray", padding: "30px"}}
+          </Item>
+          <Item 
+            itemStyle={{backgroundColor: "lightgray", padding: "30px"}}
             imgSrc={require('assets/Fiasco/Fiasco.jpg')}
             title="(trust us) Special"
             subtitle="You bring the party, we'll choose the game"
@@ -59,9 +59,9 @@ export default class Index extends React.Component {
           We pick a game for you, you have fun, everyone wins! All materials and instructions provided. 
 
           "It's kind of like your friend taking you to a movie, but not letting you watch the previews first."
-          </Service>
-          <Service 
-            containerStyle={{backgroundColor: "lightgray", padding: "30px"}}
+          </Item>
+          <Item 
+            itemStyle={{backgroundColor: "lightgray", padding: "30px"}}
             imgSrc={require('assets/Murder Mystery /tables_Mystery.jpg')}
             title="Murder Mystery"
             subtitle="an epic game over four courses"
@@ -76,9 +76,9 @@ export default class Index extends React.Component {
           <div>
             All materials included for an incredible dinner party.
           </div>
-          </Service>
-          <Service 
-            containerStyle={{backgroundColor: "lightgray", padding: "30px"}}
+          </Item>
+          <Item 
+            itemStyle={{backgroundColor: "lightgray", padding: "30px"}}
             imgSrc={require('assets/other/gamephoto.jpeg')}
             title="Custom Adventure"
             subtitle="A bespoke experience"
@@ -90,8 +90,8 @@ export default class Index extends React.Component {
             ]}
           >
           Our published game designers will work with you to build an adventure from the ground up!
-          </Service>
-        </ServicesContainer>
+          </Item>
+        </ItemsContainer>
       </div>
     )
   }

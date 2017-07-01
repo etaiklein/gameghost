@@ -8,21 +8,21 @@ const styles = function(baseval, imgSrc){ return {
     minWidth: `${30 * baseval}px`,
     margin: `${2 * baseval}px`,
     overflow: "hidden",
-    flex: 1,
-    flexDirection: "column",
+    display: "inline-block",
+    textAlign: "left",
   },
-  service: {
+  item: {
     border: "1px solid black",
   },
-  miniservice: {
+  miniContainer: {
     border: "1px solid black",
     minWidth: `${30 * baseval}px`,
     width: `${30 * baseval}px`,
     maxWidth: `${30 * baseval}px`,
     overflow: "hidden",
     margin: `${2 * baseval}px`,
-    flex: 1,
-    flexDirection: "column",
+    display: "inline-block",
+    textAlign: "left",
   },
   topBlock: {
     height: `${30 * baseval}px`,
@@ -32,12 +32,37 @@ const styles = function(baseval, imgSrc){ return {
     position: "relative",
     backgroundImage: `url(${imgSrc})`,
   },
+  topBlockText: {
+    position: "absolute",
+    height: "100%",
+    width: "100%",
+    padding: `15% 0`,
+    textAlign: "center",
+    fontSize: `${4 * baseval}px`,
+    lineHeight: "normal",
+    textTransform: "uppercase",
+    fontFamily: "'GothamBold',sans-serif",
+    color: "#fff",
+    textShadow: `3px 4px 30px black`,
+    background: "rgba(0, 0, 0, 0.5)",
+  },
+  text: {
+    fontSize: `${2 * baseval}px`,
+    lineHeight: `${3.5 * baseval}px`,
+  },
+  price: {
+    fontSize: `${2 * baseval}px`,
+    marginBottom: `${baseval}px`,
+    textTransform: "lowercase",
+    fontWeight: "bold",
+  },
   subtitle: {
     fontSize: `${2 * baseval}px`,
     marginBottom: `${baseval}px`,
     textTransform: "lowercase",
     fontWeight: "bold",
     color: "black",
+    textAlign: "center",
   },
   bottomBlock: {
     padding: `${3 * baseval}px`,
@@ -71,14 +96,21 @@ const styles = function(baseval, imgSrc){ return {
   }
 }};
 
-export class Bio extends React.Component {
+export class Item extends React.Component {
   
   static propTypes = {
     imgSrc: PropTypes.string.isRequired,
+    title: PropTypes.string,
+    price: PropTypes.string,
     subtitle: PropTypes.string,
     children: PropTypes.node.isRequired,
     highlights: PropTypes.arrayOf(PropTypes.string),
-    serviceStyle: PropTypes.object,
+    itemStyle: PropTypes.object,
+    baseval: PropTypes.number,
+  }
+
+  static defaultProps = {
+    baseval: 14
   }
 
   renderHighlights(style) {
@@ -91,13 +123,19 @@ export class Bio extends React.Component {
 
 
   render() {
-    const styl = styles(14, this.props.imgSrc);
-    const container = {...styl.container, ...this.props.serviceStyle};
+    const styl = styles(this.props.baseval, this.props.imgSrc);
+    const container = {...styl.container, ...this.props.itemStyle};
 
     return (
       <div style={container}>
-        <div style={styl.service}>
+        <div style={styl.item}>
           <div style={styl.topBlock}>
+            {(!!this.props.title || !!this.props.price) && 
+              <div style={styl.topBlockText}>
+                {!!this.props.title && this.props.title}
+                {!!this.props.price && <div style={styl.price}>{this.props.price}</div>}
+              </div>
+            }
           </div>
           <div style={styl.bottomBlock}>
             <h2> {this.props.name} </h2>
@@ -120,26 +158,39 @@ export class Bio extends React.Component {
 }
 
 
-export class MiniBio extends React.Component {
+export class MiniItem extends React.Component {
   
   static propTypes = {
     imgSrc: PropTypes.string.isRequired,
+    title: PropTypes.string,
     name: PropTypes.string,
     subtitle: PropTypes.string,
+    price: PropTypes.string,
     link: PropTypes.string,
+    baseval: PropTypes.number,
+  }
+
+  static defaultProps = {
+    baseval: 8
   }
 
   render() {
-    const styl = styles(8, this.props.imgSrc);
+    const styl = styles(this.props.baseval, this.props.imgSrc);
 
     return (
-        <div style={styl.miniservice}>
+        <div style={styl.miniContainer}>
           <Link to={prefixLink(this.props.link)}>
-            <div style={styl.topBlock}>
-            </div>
+          <div style={styl.topBlock}>
+            {(!!this.props.title || !!this.props.price) && 
+              <div style={styl.topBlockText}>
+                {!!this.props.title && this.props.title}
+                {!!this.props.price && <div style={styl.price}>{this.props.price}</div>}
+              </div>
+            }
+          </div>
           </Link>
           <div style={styl.bottomBlock}>
-            <h2> {this.props.name} </h2>
+            {!!this.props.name && <h2> {this.props.name} </h2>}
             {!!this.props.subtitle && <div style={styl.subtitle}>{this.props.subtitle}</div>}
             <Link style={styl.prefix} to={prefixLink('/contact/')}>Book Now >></Link>
           </div>
@@ -148,15 +199,12 @@ export class MiniBio extends React.Component {
     }
 }
 
-export class BiosContainer extends React.Component {
+export class ItemsContainer extends React.Component {
     
   render() {
     let styles = {
       container: {
-        alignItems: "center",
-        justifyContent: "center",
-        display: "flex",
-        flexDirection: "column",
+        textAlign: "center",
       }
     };
 

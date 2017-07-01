@@ -3,7 +3,7 @@ import { Link } from 'react-router'
 import { prefixLink } from 'gatsby-helpers'
 import Helmet from 'react-helmet'
 import { config } from 'config'
-import {Bio, BiosContainer} from '../components/Bio'
+import {Item, ItemsContainer} from '../components/Item'
 
 export default class Index extends React.Component {
   render() {
@@ -33,9 +33,9 @@ export default class Index extends React.Component {
           <h1>
             About our Game Masters
           </h1>
-          <BiosContainer>
-              <Bio 
-                serviceStyle={{backgroundColor: "lightgray", padding: "30px"}}
+          <ItemsContainer>
+              <Item 
+                itemStyle={{backgroundColor: "lightgray", padding: "30px"}}
                 imgSrc={require('assets/GameMasters/tai.png')}
                 subtitle="once 3d-printed his own brain"
                 name="Tai"
@@ -43,9 +43,9 @@ export default class Index extends React.Component {
               >
                 <p>Computer Programmer by day, Super Nerd by night. Tai is a lifelong lover of scifi, board games, and mythology. 
                 <br/> <br/> He loves playing ukulele, eating spicy foods, and growing plants. He once 3d-printed his own brain.</p>
-              </Bio>
-              <Bio 
-                serviceStyle={{backgroundColor: "lightgray", padding: "30px"}}
+              </Item>
+              <Item 
+                itemStyle={{backgroundColor: "lightgray", padding: "30px"}}
                 imgSrc={require('assets/GameMasters/Sharang.jpg')}
                 subtitle="published game designer, writer and artist"
                 name="Sharang"
@@ -61,10 +61,10 @@ export default class Index extends React.Component {
                   <br/> <br/> 
                   <Link to={"https://twitter.com/sharangbiswas"}>@SharangBiswas</Link>
                 </p>
-              </Bio>
-              <Bio 
+              </Item>
+              <Item 
                 imgSrc={require('assets/GameMasters/Chris2.jpg')}
-                serviceStyle={{backgroundColor: "lightgray", padding: "30px"}}
+                itemStyle={{backgroundColor: "lightgray", padding: "30px"}}
                 subtitle="loves exploring new systems and building worlds"
                 name="Chris"
                 link="/contact/"
@@ -74,10 +74,10 @@ export default class Index extends React.Component {
                 <br/> <br/> 
                 They enjoy working with all age groups.
                 </p>
-              </Bio>
-              <Bio 
+              </Item>
+              <Item 
                 imgSrc={require('assets/GameMasters/Nick.jpg')}
-                serviceStyle={{backgroundColor: "lightgray", padding: "30px"}}
+                itemStyle={{backgroundColor: "lightgray", padding: "30px"}}
                 subtitle="directs and designs interactive experiences"
                 name="Nick"
                 link="/contact/"
@@ -92,8 +92,8 @@ export default class Index extends React.Component {
                 Upcoming projects include Me Prometheus in New York Theater Festival: 
                 Summerfest and You Either Know It Or You're Dead as part of Game Play at The Brick.
                 </p>
-              </Bio>
-          </BiosContainer>
+              </Item>
+          </ItemsContainer>
         </div>
       </div>
     )

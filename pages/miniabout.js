@@ -3,7 +3,7 @@ import { Link } from 'react-router'
 import { prefixLink } from 'gatsby-helpers'
 import Helmet from 'react-helmet'
 import { config } from 'config'
-import {MiniBio, BiosContainer} from '../components/Bio'
+import {MiniItem, ItemsContainer} from '../components/Item'
 
 export default class Index extends React.Component {
   render() {
@@ -17,32 +17,32 @@ export default class Index extends React.Component {
         <h1>
           About our Game Masters
         </h1>
-        <BiosContainer>
-          <MiniBio 
+        <ItemsContainer>
+          <MiniItem 
             imgSrc={require('assets/GameMasters/tai.png')}
             subtitle="Loves cartoons and comics. He once 3d-printed his own brain"
             name="Tai"
             link="/about/"
           />
-          <MiniBio 
+          <MiniItem 
             imgSrc={require('assets/GameMasters/Sharang.jpg')}
             subtitle="published game designer, artist, and scientist"
             name="Sharang"
             link="/about/"
           />
-          <MiniBio 
+          <MiniItem 
             imgSrc={require('assets/GameMasters/Chris2.jpg')}
             subtitle="hardcore gamer of all kinds. Magic the Gathering enthusiast"
             name="Chris"
             link="/about/"
           />
-          <MiniBio 
+          <MiniItem 
             imgSrc={require('assets/GameMasters/Nick.jpg')}
             subtitle="theater nerd, board games, and beer. Gifted with gab."
             name="Nick"
             link="/about/"
           />
-        </BiosContainer>
+        </ItemsContainer>
       </div>
     )
   }
