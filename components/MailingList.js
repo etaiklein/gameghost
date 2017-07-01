@@ -9,6 +9,8 @@ export default class MailingList extends React.Component {
         style={{
           display: "flex",
           flexDirection: "row",
+          marginBottom: 0,
+          paddingBottom: "1.45rem",
         }}
       >
         <label>

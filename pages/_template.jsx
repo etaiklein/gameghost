@@ -30,59 +30,61 @@ export default class Template extends React.Component {
           <div
             style={{
               margin: `0 auto`,
-              maxWidth: 960,
-              padding: `${rhythm(1)} ${rhythm(3 / 4)}`,
+              maxWidth: 1280,
+              padding: `${rhythm(3/4)} ${rhythm(3 / 4)} 0`,
             }}
           >
-            <h1 style={{ margin: 0 }}>
-              <Link
-                to={prefixLink("/")}
-                style={{
-                  color: "white",
-                  textDecoration: "none",
-                }}
-              >
-                GameGhost
-              </Link>
-            </h1>
-            <h5 style={{display: "flex", flexFlow: "row wrap", justifyContent: "flex-end"}}>
-              <Link
-                to={prefixLink("/services/")}
-                style={{
-                  color: "white",
-                  marginRight: "10px",
-                  textDecoration: "none",
-                }}
-              >
-                services
-              </Link>
-              <Link
-                to={prefixLink("/contact/")}
-                style={{
-                  color: "white",
-                  marginRight: "10px",
-                  textDecoration: "none",
-                }}
-              >
-                contact
-              </Link>
-              <Link
-                to={prefixLink("/about/")}
-                style={{
-                  color: "white",
-                  marginRight: "10px",
-                  textDecoration: "none",
-                }}
-              >
-                about
-              </Link>
-            </h5>
+            <div style={{display: "flex", flexFlow: "row wrap", justifyContent: "space-between"}}>
+              <h5 style={{ margin: 0 }}>
+                <Link
+                  to={prefixLink("/")}
+                  style={{
+                    color: "white",
+                    textDecoration: "none",
+                  }}
+                >
+                  GameGhost
+                </Link>
+              </h5>
+              <h5 style={{display: "flex", flexFlow: "row wrap", justifyContent: "flex-end"}}>
+                <Link
+                  to={prefixLink("/services/")}
+                  style={{
+                    color: "white",
+                    marginRight: "10px",
+                    textDecoration: "none",
+                  }}
+                >
+                  services
+                </Link>
+                <Link
+                  to={prefixLink("/contact/")}
+                  style={{
+                    color: "white",
+                    marginRight: "10px",
+                    textDecoration: "none",
+                  }}
+                >
+                  contact
+                </Link>
+                <Link
+                  to={prefixLink("/about/")}
+                  style={{
+                    color: "white",
+                    marginRight: "10px",
+                    textDecoration: "none",
+                  }}
+                >
+                  about
+                </Link>
+              </h5>
+            </div>
           </div>
         </div>
         <div
           style={{
             margin: `0 auto`,
-            maxWidth: 960,
+            maxWidth: 1280,
             padding: `${rhythm(1)} ${rhythm(3 / 4)}`,
             paddingTop: 0,
           }}

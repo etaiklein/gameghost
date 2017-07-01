@@ -3,16 +3,16 @@ import { Link } from 'react-router'
 import { prefixLink } from 'gatsby-helpers'
 import Helmet from 'react-helmet'
 import { config } from 'config'
+import ContactForm from 'components/ContactForm'
 
 export default class Index extends React.Component {
   render() {
     return (
-      <div>
+      <div style={{backgroundColor: "lavender", padding: "30px"}}>
         <h1>
-          Contact
+          Contact us
         </h1>
-        <p>Welcome to page 2</p>
-        <Link to={prefixLink('/')}>Go back to the homepage</Link>
+        <ContactForm />
       </div>
     )
   }
