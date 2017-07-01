@@ -151,12 +151,12 @@ export class MiniBio extends React.Component {
 export class BiosContainer extends React.Component {
     
   render() {
-    const styles = {
+    let styles = {
       container: {
-        display: "flex",
         alignItems: "center",
         justifyContent: "center",
-        flexFlow: "row wrap",
+        display: "flex",
+        flexDirection: "column",
       }
     };
 

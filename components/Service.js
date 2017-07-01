@@ -182,12 +182,12 @@ export class MiniService extends React.Component {
 export class ServicesContainer extends React.Component {
     
   render() {
-    const styles = {
+    let styles = {
       container: {
-        display: "flex",
         alignItems: "center",
         justifyContent: "center",
-        flexFlow: "row wrap",
+        display: "flex",
+        flexDirection: "column",
       }
     };
 
