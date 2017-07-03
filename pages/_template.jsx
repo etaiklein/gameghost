@@ -5,6 +5,7 @@ import { prefixLink } from 'gatsby-helpers'
 import Helmet from 'react-helmet'
 import { config } from 'config'
 import { rhythm } from '../utils/typography'
+import {baseValLarge} from '../components/Item'
 
 export default class Template extends React.Component {
   static propTypes = {

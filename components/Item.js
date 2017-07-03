@@ -2,14 +2,18 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { Link } from 'react-router'
 import { prefixLink } from 'gatsby-helpers'
+import Highlight from './Highlight'
 
-const styles = function(baseval, imgSrc){ return {
+export const baseValLarge = 14;
+export const baseValSmall = 8;
+
+const styles = function(baseval, imgSrc, tall){ return {
   container: {
-    minWidth: `${30 * baseval}px`,
-    margin: `${2 * baseval}px`,
+    minWidth: `${17 * baseval}px`,
+    maxWidth: `${34 * baseval}px`,
+    margin: `${baseval}px 0`,
     overflow: "hidden",
-    display: "inline-block",
-    textAlign: "left",
+    verticalAlign: "top",
   },
   item: {
     border: "1px solid black",
@@ -25,7 +29,7 @@ const styles = function(baseval, imgSrc){ return {
     textAlign: "left",
   },
   topBlock: {
-    height: `${30 * baseval}px`,
+    height: `${(tall ? 30 : 20) * baseval}px`,
     backgroundRepeat: "no-repeat",
     backgroundSize: "cover",
     backgroundPosition: "top",
@@ -36,63 +40,46 @@ const styles = function(baseval, imgSrc){ return {
     position: "absolute",
     height: "100%",
     width: "100%",
-    padding: `15% 0`,
+    paddingTop: `${6 * baseval}px`,
     textAlign: "center",
-    fontSize: `${4 * baseval}px`,
-    lineHeight: "normal",
     textTransform: "uppercase",
     fontFamily: "'GothamBold',sans-serif",
     color: "#fff",
     textShadow: `3px 4px 30px black`,
     background: "rgba(0, 0, 0, 0.5)",
   },
-  text: {
-    fontSize: `${2 * baseval}px`,
-    lineHeight: `${3.5 * baseval}px`,
-  },
+  text: {},
   price: {
-    fontSize: `${2 * baseval}px`,
     marginBottom: `${baseval}px`,
     textTransform: "lowercase",
     fontWeight: "bold",
   },
+  title: {
+    textTransform: "uppercase",
+    fontSize: `${2.8 * baseval}px`,
+    lineHeight: `${3.2 * baseval}px`,
+    margin: `0 ${baseval}px`,
+    fontWeight: "bold",
+  },
   subtitle: {
-    fontSize: `${2 * baseval}px`,
-    marginBottom: `${baseval}px`,
+    marginBottom: `${2.5 * baseval}px`,
     textTransform: "lowercase",
     fontWeight: "bold",
     color: "black",
     textAlign: "center",
+    backgroundColor: "lightgray",
+    padding: `${baseval}px`
   },
   bottomBlock: {
-    padding: `${3 * baseval}px`,
+    padding: `${2 * baseval}px`,
     backgroundColor: "white",
   },
-  highlights: {
-    margin: `${2 * baseval}px 0`,
-    background: "Black",
-    padding: `${2.5 * baseval}px ${3 * baseval}px ${baseval}px`,
-
-  },
-  highlightText: {
-    marginBottom: `${baseval}px`, 
-    color: "white"
-  },
-  highlightItem: {
-    color: "white",
-  },
-  list: {
-    marginBottom: 0
-  },
-  highlightStyle: {
-    WebkitFontSmoothing: "antialiased",
-    textRendering: "optimizeLegibility",
-    color: "white",
-    fontSize: `${2 * baseval}px`,
-    lineHeight: `${3 * baseval}px`,
-  },
   prefix: {
-    marginTop: `${3 * baseval}px`
+    marginTop: `${3 * baseval}px`,
+  },
+  name: {
+    textAlign: "center",
+    margin: `0 ${baseval}px ${baseval * 2}px`,
   }
 }};
 
@@ -107,23 +94,15 @@ export class Item extends React.Component {
     highlights: PropTypes.arrayOf(PropTypes.string),
     itemStyle: PropTypes.object,
     baseval: PropTypes.number,
+    tall: PropTypes.bool,
   }
 
   static defaultProps = {
-    baseval: 14
+    baseval: baseValLarge
   }
-
-  renderHighlights(style) {
-    const highlights = [];
-    for (const highlight of this.props.highlights){
-      highlights.push(<li style={style}>{highlight}</li>)
-    }
-    return highlights;
-  }
-
 
   render() {
-    const styl = styles(this.props.baseval, this.props.imgSrc);
+    const styl = styles(this.props.baseval, this.props.imgSrc, this.props.tall);
     const container = {...styl.container, ...this.props.itemStyle};
 
     return (
@@ -132,24 +111,19 @@ export class Item extends React.Component {
           <div style={styl.topBlock}>
             {(!!this.props.title || !!this.props.price) && 
               <div style={styl.topBlockText}>
-                {!!this.props.title && this.props.title}
+                {!!this.props.title && <div style={styl.title}>{this.props.title}</div>}
                 {!!this.props.price && <div style={styl.price}>{this.props.price}</div>}
               </div>
             }
           </div>
           <div style={styl.bottomBlock}>
-            <h2> {this.props.name} </h2>
+            {!!this.props.name && <h2 style={styl.name}> {this.props.name} </h2>}
             {!!this.props.subtitle && <div style={styl.subtitle}>{this.props.subtitle}</div>}
             <div style={styl.text}>
               {this.props.children}
             </div>
-            {this.props.highlights && <div style={styl.highlights}>
-              <h5 style={styl.highlightText}>HIGHLIGHTS</h5>
-              <ul style={styl.list}>
-                {this.renderHighlights(styl.highlightStyle)}
-              </ul>
-            </div>}
-            <Link style={styl.prefix} to={prefixLink('/contact/')}>Request this GM >></Link>
+            {this.props.highlights && <Highlight highlights={this.props.highlights} />}
+            <Link style={styl.prefix} to={prefixLink('/contact/')}>Book Now >></Link>
           </div>
         </div>
       </div>
@@ -168,14 +142,15 @@ export class MiniItem extends React.Component {
     price: PropTypes.string,
     link: PropTypes.string,
     baseval: PropTypes.number,
+    tall: PropTypes.bool,
   }
 
   static defaultProps = {
-    baseval: 8
+    baseval: baseValSmall
   }
 
   render() {
-    const styl = styles(this.props.baseval, this.props.imgSrc);
+    const styl = styles(this.props.baseval, this.props.imgSrc, this.props.tall);
 
     return (
         <div style={styl.miniContainer}>
@@ -183,14 +158,14 @@ export class MiniItem extends React.Component {
           <div style={styl.topBlock}>
             {(!!this.props.title || !!this.props.price) && 
               <div style={styl.topBlockText}>
-                {!!this.props.title && this.props.title}
+                {!!this.props.title && <div style={styl.title}>{this.props.title}</div>}
                 {!!this.props.price && <div style={styl.price}>{this.props.price}</div>}
               </div>
             }
           </div>
           </Link>
           <div style={styl.bottomBlock}>
-            {!!this.props.name && <h2> {this.props.name} </h2>}
+            {!!this.props.name && <h2 style={styl.name}> {this.props.name} </h2>}
             {!!this.props.subtitle && <div style={styl.subtitle}>{this.props.subtitle}</div>}
             <Link style={styl.prefix} to={prefixLink('/contact/')}>Book Now >></Link>
           </div>
@@ -205,6 +180,9 @@ export class ItemsContainer extends React.Component {
     let styles = {
       container: {
         textAlign: "center",
+        display: "flex",
+        flexFlow: "row wrap",
+        justifyContent: "space-around",
       }
     };
 

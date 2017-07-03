@@ -1,15 +1,11 @@
 import React from 'react'
-import { Link } from 'react-router'
-import { prefixLink } from 'gatsby-helpers'
-import Helmet from 'react-helmet'
-import { config } from 'config'
-import {MiniItem, ItemsContainer} from '../components/Item'
+import {baseValLarge, MiniItem, ItemsContainer} from '../components/Item'
 
 export default class Index extends React.Component {
   render() {
     return (
       <div>
-        <h1>
+        <h1 style={{padding: `${2 * baseValLarge}px ${2 * baseValLarge}px 0`, textAlign: 'center'}}>
           Services
         </h1>
         <ItemsContainer>
